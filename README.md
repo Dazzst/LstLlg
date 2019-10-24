@@ -1,0 +1,2 @@
+# LstLlg
+Learning Python introduction
