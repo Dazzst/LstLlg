@@ -1,0 +1,26 @@
+makeCacheMatrix <- function(x = matrix()) {
+  ls <- NULL
+  set <- function(y){
+    x <<- y
+    ls <<- NULL
+  }
+  get <- function() x
+  setInverse <- function(solveMatrix) ls <<- solveMatrix
+  getInverse <- function() ls
+  list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
+}
+
+
+
+cacheSolve <- function(x, ...) {
+ 
+  ls <- x$getInverse()
+  if(!is.null(ls)){
+    message("getting cached data")
+    return(ls)
+  }
+  data <- x$get()
+  ls <- solve(data)
+  x$setInverse(ls)
+  ls      
+}
